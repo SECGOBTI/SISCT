@@ -16,24 +16,24 @@ $id_nombre       = $_POST['id_nombre'];
 
 // carpeta y documento
 $Fecha_salida = date("Y-m-d");
-$upload_folder  = "adjunto/";
-$Ru = './adjunto';
+$upload_folder  = "../adjunto";
+$Ru = '../adjunto';
 
 if ( file_exists($_FILES['Documento_digitalizado']['tmp_name'])) {
     $nombre_archivo = $_FILES['Documento_digitalizado']['name'];
     $tmp_archivo    = $_FILES['Documento_digitalizado']['tmp_name'];
 }
 else{
-    $nombre_archivo =pathinfo('./adjunto/falta_documento.pdf', PATHINFO_BASENAME );
-    $tmp_archivo    = './adjunto/falta_documento.pdf';
+    $nombre_archivo =pathinfo('../adjunto/falta_documento.pdf', PATHINFO_BASENAME );
+    $tmp_archivo    = '../adjunto/falta_documento.pdf';
 }
 
-
+   // echo  $nombre_archivo;
    // echo pathinfo('./adjunto/sin_titulo.pdf');
     
 
 
-$rutaCarpetas = "./".$upload_folder.$añoMesDia;
+$rutaCarpetas = $upload_folder.$añoMesDia;
 $rute = $rutaCarpetas.'/'. $nombre_archivo;
 
 if (!file_exists($rutaCarpetas)) {
@@ -58,7 +58,7 @@ else {
  
 $query1 = "INSERT INTO archivo (id_registro,tipo_archivo,ruta,fecha,id_nombre )VALUES (
     
-'$id_registro','$tipo_archivo','$rutaCarpetas','$añoMesDia','$id_nombre'
+'$id_registro','$tipo_archivo','$rute','$añoMesDia','$id_nombre'
     
 )";
 
